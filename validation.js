@@ -4,8 +4,10 @@ var reg = /[a-z]/gi;
 const inputs = document.querySelectorAll('input');
 
 const patterns = {
-    telephone: /^\d{10}$/.
-    username: /^[a-z\d]{5,12}$/i
+  telephone: /^\d{10}$/,
+  username: /^[a-z\d]{5,12}$/,
+  password: /^[\w@-]{8,20}$/,
+  slug: /^[a-z\d]{8,20}$/,
 };
 
 // validation function
@@ -20,8 +22,8 @@ function validate(field, regex) {
 }
 
 inputs.forEach((input) => {
-    input.addEventListener("keyup", (e) => {
-       // console.log(e.target.attributes.name.value);
-        validate(e.target, patterns['telephone']);
-  })
-}) 
+    input.addEventListener('keyup', (e) => {
+        // console.log(e.target.attributes.name.value);
+        validate(e.target, patterns[e.target.attributes.name.value])
+    });
+}); 
